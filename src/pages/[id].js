@@ -5,7 +5,7 @@ import ContentRow from '../components/content-row'
 import SidebarContent from '../components/sidebar-content';
 import TopbarContent from '../components/topbar-content';
 
-const ContentTitle = ({ text, onEnter }) => {
+const ContentTitle = ({ text }) => {
     return (
         <div
             suppressContentEditableWarning={true}
@@ -63,7 +63,7 @@ export default function Home() {
             <div className="w-full h-full">
                 <TopbarContent title="Getting Started" />
                 <div className="w-[900px] md:w-[650px] px-16 mx-auto">
-                    <ContentTitle text="Getting Started" onEnter={addRow} />
+                    <ContentTitle text="Getting Started" />
                     <ListContentRow
                         rows={rows}
                         addRow={addRow}
