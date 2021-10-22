@@ -166,7 +166,9 @@ export default function Home() {
     return (
         <div className="flex w-full h-screen justify-between font-mono">
             <Head>
-                <title>Getting Started - Noiton</title>
+                <title>Getting Started - Noicon</title>
+                <link rel="icon" href="/favicon.ico" />
+                <script defer data-domain="nocion.vercel.app" src="https://plausible.io/js/plausible.js"></script>
             </Head>
             <Resizable
                 minWidth={240}

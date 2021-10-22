@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import { useState } from "react"
 
 export default function Onboarding() {
@@ -5,6 +6,12 @@ export default function Onboarding() {
 
     return (
         <div className="grid place-items-center h-screen bg-[#f7f6f3]">
+            <Head>
+                <title>Onboarding - Noicon</title>
+                <link rel="icon" href="/favicon.ico" />
+                <script defer data-domain="nocion.vercel.app" src="https://plausible.io/js/plausible.js"></script>
+            </Head>
+
             <div className="space-y-8">
                 <div className="space-y-2 text-center">
                     <h1 className="pb-12">🚀</h1>

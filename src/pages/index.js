@@ -6,6 +6,7 @@ export default function Home() {
       <Head>
         <title>Noiton - Open source alternative to notion.</title>
         <link rel="icon" href="/favicon.ico" />
+        <script defer data-domain="nocion.vercel.app" src="https://plausible.io/js/plausible.js"></script>
       </Head>
 
       <main>
