@@ -25,6 +25,18 @@
     @apply text-[#575757]
 }
 
+.text-gray-600 {
+    color: rgba(55, 53, 47, 0.8)
+}
+
+.text-yello-600 {
+    color: rgb(246, 192, 80);
+}
+
+.hover\:bg-hover:hover {
+    background-color: #F1F1EF;
+}
+
 h1 {
     @apply font-bold text-gray-900 text-6xl
 }
@@ -41,13 +53,12 @@ h2 {
 }
 
 .grabbable {
-    cursor: move; /* fallback if grab cursor is unsupported */
+    cursor: move;
     cursor: grab;
     cursor: -moz-grab;
     cursor: -webkit-grab;
 }
 
- /* (Optional) Apply a "closed-hand" cursor during drag operation. */
 .grabbable:active {
     cursor: grabbing;
     cursor: -moz-grabbing;
