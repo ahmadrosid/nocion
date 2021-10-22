@@ -171,9 +171,9 @@ export default function Home() {
                 <script defer data-domain="nocion.vercel.app" src="https://plausible.io/js/plausible.js"></script>
             </Head>
             <Resizable
-                minWidth={240}
+                minWidth={248}
                 defaultSize={{
-                    width: 240,
+                    width: 248,
                     height: '100%',
                 }}
             >
