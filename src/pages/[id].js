@@ -1,13 +1,48 @@
 import Head from 'next/head'
-import { useEffect, useState } from 'react';
+import { createRef, useEffect, useRef, useState } from 'react';
 import { nanoid } from 'nanoid'
 import ContentRow from '../components/content-row'
 import SidebarContent from '../components/sidebar-content';
 import TopbarContent from '../components/topbar-content';
 
-const ContentTitle = ({ text }) => {
+const ContentTitle = ({ text, addRow }) => {
+    const contentRef = useRef()
+
+    const handleOnUp = (event) => {
+        const { key } = event
+        if (!contentRef?.current?.innerText) {
+            return
+        }
+
+        if (key == 'Enter' && document.activeElement === contentRef.current) {
+            if (!event.shiftKey) {
+                addRow({ text: '' })
+            } else {
+                contentRef.current.innerText = contentRef.current.innerText + "\n"
+            }
+        }
+    }
+
+    const handleOnDown = (event) => {
+        // TODO: handle something
+        const { key } = event
+        if (key == 'Enter' && document.activeElement === contentRef.current) {
+            event.preventDefault()
+        }
+    }
+
+    useEffect(() => {
+        window.addEventListener("keyup", handleOnUp);
+        window.addEventListener("keydown", handleOnDown);
+        return () => {
+            window.removeEventListener("keyup", handleOnUp);
+            window.removeEventListener("keydown", handleOnDown);
+        };
+    }, []);
+
     return (
         <div
+            ref={contentRef}
             suppressContentEditableWarning={true}
             contentEditable={true}
             className="text-[#37352F] font-bold text-[40px] p-2 focus:outline-none">
@@ -37,10 +72,11 @@ export default function Home() {
         if (rows.length == 0) {
             addRow({ text: "👋 Welcome to Nocion!", id: nanoid() })
         }
-    }, [])
+    }, [rows])
 
     const addRow = (value) => {
         const cloneRows = [...rows]
+        console.log('added row', value, cloneRows)
         cloneRows.push({ ...value, id: nanoid() })
         appendRow(cloneRows)
     }
@@ -63,7 +99,7 @@ export default function Home() {
             <div className="w-full h-full">
                 <TopbarContent title="Getting Started" />
                 <div className="xl:w-[900px] md:w-[650px] px-16 mx-auto">
-                    <ContentTitle text="Getting Started" />
+                    <ContentTitle addRow={addRow} text="Getting Started" />
                     <ListContentRow
                         rows={rows}
                         addRow={addRow}

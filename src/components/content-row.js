@@ -79,6 +79,10 @@ export default function ContentRow({ text, id, addRow, removeRow }) {
         console.log('clicked', contentRef?.current?.innerText?.length)
     }
 
+    const onSelectMenu = () => {
+        setOpenPopup(false)
+    }
+
     useEffect(() => {
         window.addEventListener("keyup", handleOnUp);
         window.addEventListener("keydown", handleOnDown);
@@ -102,7 +106,7 @@ export default function ContentRow({ text, id, addRow, removeRow }) {
                     </svg>
                 </div>
             </div>
-            <PopupMenu isOpen={openPopup} />
+            <PopupMenu isOpen={openPopup} onSelectMenu={onSelectMenu} />
             <div
                 ref={contentRef}
                 className="block-editor text-gray-700 text-[16px] focus:outline-none px-2 py-1 w-full cursor-text"
