@@ -62,7 +62,7 @@ export default function Home() {
 
             <div className="w-full h-full">
                 <TopbarContent title="Getting Started" />
-                <div className="w-[900px] md:w-[650px] px-16 mx-auto">
+                <div className="xl:w-[900px] md:w-[650px] px-16 mx-auto">
                     <ContentTitle text="Getting Started" />
                     <ListContentRow
                         rows={rows}

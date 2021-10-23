@@ -1,7 +1,9 @@
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
+import PopupMenu from "./popup-menu"
 
 export default function ContentRow({ text, id, addRow, removeRow }) {
     const contentRef = useRef()
+    const [openPopup, setOpenPopup] = useState(false)
 
     useEffect(() => {
         contentRef.current.focus()
@@ -16,13 +18,14 @@ export default function ContentRow({ text, id, addRow, removeRow }) {
     const handleOnBlur = () => {
         if (contentRef.current?.innerText?.length == 0) {
             contentRef.current.setAttribute('placeholder', '')
+            setOpenPopup(false)
         }
     }
 
     const handleOnUp = (event) => {
         const { key } = event
         if (!contentRef?.current?.innerText) {
-            removeRow({ text, id })
+            // removeRow({ text, id })
             return
         }
 
@@ -39,7 +42,6 @@ export default function ContentRow({ text, id, addRow, removeRow }) {
             }
         } else {
             if (key == 'Enter' && document.activeElement === contentRef.current) {
-                // contentRef.current.lastElementChild.remove()
                 event.preventDefault()
                 addRow({ text: '' })
             }
@@ -67,6 +69,16 @@ export default function ContentRow({ text, id, addRow, removeRow }) {
         }
     }
 
+    const onAddClick = () => {
+        if (contentRef?.current?.innerText?.length > 0) {
+            addRow({ text: '' })
+            setOpenPopup(false)
+        } else {
+            setOpenPopup(true)
+        }
+        console.log('clicked', contentRef?.current?.innerText?.length)
+    }
+
     useEffect(() => {
         window.addEventListener("keyup", handleOnUp);
         window.addEventListener("keydown", handleOnDown);
@@ -78,8 +90,8 @@ export default function ContentRow({ text, id, addRow, removeRow }) {
 
     return (
         <div className="flex items-center relative group">
-            <div className="-left-8 top-0 pt-[5px] absolute flex items-center">
-                <div onClick={() => addRow({ text: '' })} className="hover:bg-gray-200 group-hover:block hidden transition-all rounded cursor-pointer">
+            <div className="-left-9 top-1 absolute flex gap-1 items-center">
+                <div onClick={onAddClick} className="hover:bg-gray-200 group-hover:block hidden transition-all rounded cursor-pointer">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-300" viewBox="0 0 20 20" fill="currentColor">
                         <path fillRule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clipRule="evenodd" />
                     </svg>
@@ -90,6 +102,7 @@ export default function ContentRow({ text, id, addRow, removeRow }) {
                     </svg>
                 </div>
             </div>
+            <PopupMenu isOpen={openPopup} />
             <div
                 ref={contentRef}
                 className="block-editor text-gray-700 text-[16px] focus:outline-none px-2 py-1 w-full cursor-text"
