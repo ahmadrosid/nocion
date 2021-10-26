@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react"
 import { setCaretToEnd } from "../lib/utils"
 import PopupMenu from "./popup-menu"
 
-
 export default function ContentRow({ text, id, addRow, removeRow }) {
     const contentRef = useRef()
     const [openPopup, setOpenPopup] = useState(false)
@@ -35,18 +34,19 @@ export default function ContentRow({ text, id, addRow, removeRow }) {
         }
 
         const { innerText } = contentRef.current
-        if (key == 'Backspace') {
-            // console.log(innerText)
+        if (key === '/' && document.activeElement === contentRef.current) {
+            if (innerText === '/' || innerText.length == 1) {
+                setOpenPopup(true)
+                event.preventDefault();
+                return
+            }
         }
 
-        if (key == 'Backspace' && innerText === '' || innerText.length == 0) {
-            if (document.activeElement !== contentRef.current) {
-                contentRef.current.setAttribute('placeholder', '')
-                return;
-            }
-            contentRef.current.setAttribute('placeholder', "Type '/' for commands")
-            if (innerText !== null && innerText.length == 0) {
+        if (key == 'Backspace' && document.activeElement === contentRef.current) {
+            if (innerText === '' || innerText.length == 0) {
+                contentRef.current.setAttribute('placeholder', "Type '/' for commands")
                 removeRow({ text, id })
+                return
             }
         } else {
             if (key == 'Enter' && document.activeElement === contentRef.current) {
