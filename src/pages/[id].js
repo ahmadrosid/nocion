@@ -1,55 +1,10 @@
 import Head from 'next/head'
-import { createRef, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { nanoid } from 'nanoid'
 import ContentRow from '../components/content-row'
 import SidebarContent from '../components/sidebar-content';
 import TopbarContent from '../components/topbar-content';
-
-const ContentTitle = ({ text, addRow }) => {
-    const contentRef = useRef()
-
-    const handleOnUp = (event) => {
-        const { key } = event
-        if (!contentRef?.current?.innerText) {
-            return
-        }
-
-        if (key == 'Enter' && document.activeElement === contentRef.current) {
-            if (!event.shiftKey) {
-                addRow({ text: '' })
-            } else {
-                contentRef.current.innerText = contentRef.current.innerText + "\n"
-            }
-        }
-    }
-
-    const handleOnDown = (event) => {
-        // TODO: handle something
-        const { key } = event
-        if (key == 'Enter' && document.activeElement === contentRef.current) {
-            event.preventDefault()
-        }
-    }
-
-    useEffect(() => {
-        window.addEventListener("keyup", handleOnUp);
-        window.addEventListener("keydown", handleOnDown);
-        return () => {
-            window.removeEventListener("keyup", handleOnUp);
-            window.removeEventListener("keydown", handleOnDown);
-        };
-    }, []);
-
-    return (
-        <div
-            ref={contentRef}
-            suppressContentEditableWarning={true}
-            contentEditable={true}
-            className="text-[#37352F] font-bold text-[40px] p-2 focus:outline-none">
-            {text}
-        </div>
-    )
-}
+import ContentTitle from '../components/content-title';
 
 const ListContentRow = ({ rows = [], addRow, removeRow }) => {
     return (
@@ -76,7 +31,6 @@ export default function Home() {
 
     const addRow = (value) => {
         const cloneRows = [...rows]
-        console.log('added row', value, cloneRows)
         cloneRows.push({ ...value, id: nanoid() })
         appendRow(cloneRows)
     }

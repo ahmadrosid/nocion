@@ -6,14 +6,14 @@ export default function SidebarContent() {
             minWidth={248}
             defaultSize={{
                 width: 248,
-                height: '100%',
+                height: '100vh',
             }}>
             <div className="w-full h-full bg-[#F7F6F3]">
                 <div className="px-4 py-2 hover:bg-[#E8E7E4] hover:cursor-pointer">
                     <div className="flex justify-between items-center gap-2 group relative">
                         <div className="flex gap-2 items-center">
-                            <img src="https://www.ahmadrosid.com/profile.png" className="w-8" />
-                            <p className="text-sm text-[#37352F] group-hover:ml-0 group-hover:relative truncate">Ahmad Rosid's Noiton Long</p>
+                            <img src="/user.jpg" className="w-6 rounded" />
+                            <p className="text-sm text-[#37352F] group-hover:ml-0 group-hover:relative truncate">Ahmad Rosid's Nocion</p>
                         </div>
                         <div className="transition-opacity duration-500 static right-0 group-hover:static ease-in-out text-[#3d3d3d] opacity-0 transform group-hover:block group-hover:opacity-100">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">

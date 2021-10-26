@@ -1,12 +1,18 @@
 import { useEffect, useRef, useState } from "react"
+import { setCaretToEnd } from "../lib/utils"
 import PopupMenu from "./popup-menu"
+
 
 export default function ContentRow({ text, id, addRow, removeRow }) {
     const contentRef = useRef()
     const [openPopup, setOpenPopup] = useState(false)
 
     useEffect(() => {
-        contentRef.current.focus()
+        if (text == '') {
+            contentRef.current.focus()
+        } else {
+            setCaretToEnd(contentRef.current)
+        }
     }, [])
 
     const handleOnFocus = () => {
@@ -25,13 +31,15 @@ export default function ContentRow({ text, id, addRow, removeRow }) {
     const handleOnUp = (event) => {
         const { key } = event
         if (!contentRef?.current?.innerText) {
-            // removeRow({ text, id })
             return
         }
 
         const { innerText } = contentRef.current
+        if (key == 'Backspace') {
+            // console.log(innerText)
+        }
 
-        if (key == 'Backspace' && innerText === '' || innerText == '\n' || innerText.length == 0) {
+        if (key == 'Backspace' && innerText === '' || innerText.length == 0) {
             if (document.activeElement !== contentRef.current) {
                 contentRef.current.setAttribute('placeholder', '')
                 return;
@@ -54,11 +62,11 @@ export default function ContentRow({ text, id, addRow, removeRow }) {
         const { innerText } = contentRef.current
         if (innerText == undefined) return
 
-        if (key == 'Backspace' && innerText === '' || innerText.length == 0) {
-            if (document.activeElement !== contentRef.current) {
-                contentRef.current.setAttribute('placeholder', '')
-                return;
-            }
+        if (key == 'Backspace' && document.activeElement === contentRef.current && innerText === '' || innerText.length == 0) {
+            // if (document.activeElement !== contentRef.current) {
+            //     contentRef.current.setAttribute('placeholder', '')
+            //     return;
+            // }
             contentRef.current.setAttribute('placeholder', "Type '/' for commands")
         } else {
             if (key == 'Enter' && document.activeElement === contentRef.current) {
@@ -76,7 +84,6 @@ export default function ContentRow({ text, id, addRow, removeRow }) {
         } else {
             setOpenPopup(true)
         }
-        console.log('clicked', contentRef?.current?.innerText?.length)
     }
 
     const onSelectMenu = () => {
