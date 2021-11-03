@@ -51,7 +51,7 @@ export default function ContentRow({ text, id, addRow, removeRow }) {
         } else {
             if (key == 'Enter' && document.activeElement === contentRef.current) {
                 event.preventDefault()
-                addRow({ text: '' })
+                addRow({ text: '', parentId: id })
             }
             contentRef.current.setAttribute('placeholder', '')
         }
@@ -79,7 +79,7 @@ export default function ContentRow({ text, id, addRow, removeRow }) {
 
     const onAddClick = () => {
         if (contentRef?.current?.innerText?.length > 0) {
-            addRow({ text: '' })
+            addRow({ text: '', parentId: id })
             setOpenPopup(false)
         } else {
             setOpenPopup(true)

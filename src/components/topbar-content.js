@@ -1,7 +1,40 @@
+import { useRef, useState } from "react";
+import useOnClickOutside from "../lib/hooks/useOnClickOutside";
+
 export default function TopbarContent({ title }) {
+    const refTitleContainer = useRef()
+    const refTitle = useRef()
+    const [contentTitle, setContentTitle] = useState(title)
+    const [showEditTitle, setShowEditTitle] = useState(false)
+
+    useOnClickOutside(refTitleContainer, () => setShowEditTitle(false))
+
+    const handleUpdateTitle = (e) => {
+        setShowEditTitle(!showEditTitle)
+        e.preventDefault();
+    }
+
+    const handleSubmitUpdateTitle = (e) => {
+        setContentTitle(e.target.title.value)
+        setShowEditTitle(false)
+        e.preventDefault();
+    }
+
     return (
         <div className="p-2 flex justify-between">
-            <div className="hover:bg-hover px-2 py-1 rounded-md cursor-pointer">{title}</div>
+            <div className="relative" ref={refTitleContainer} >
+                <div onClick={handleUpdateTitle} ref={refTitle} className="hover:bg-hover px-2 py-1 rounded-md cursor-pointer">{contentTitle}</div>
+                {showEditTitle && (
+                    <div className="bg-white rounded shadow-lg py-1 px-2 border border-[#dadada] flex items-center gap-2 absolute -left-full w-[350px]">
+                        <div className="border border-[#dadada] px-1.5 py-1 rounded">
+                            <img src="/user.jpg" className="w-6 rounded" />
+                        </div>
+                        <form onSubmit={handleSubmitUpdateTitle} className="w-full">
+                            <input name="title" className="text-sm w-full max-w-[400px] bg-gray-1 rounded px-1.5 py-1 border border-[#dadada] focus:outline-none" type="text" defaultValue={contentTitle} />
+                        </form>
+                    </div>
+                )}
+            </div>
             <div className="flex items-center gap-1">
                 <div className="hover:bg-hover px-2 py-1 rounded-md cursor-pointer">Share</div>
                 <div className="text-gray-600 hover:bg-hover cursor-pointer p-1 px-1.5 rounded">

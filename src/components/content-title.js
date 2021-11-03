@@ -12,7 +12,7 @@ export default function ContentTitle({ text, addRow }){
 
         if (key == 'Enter' && document.activeElement === contentRef.current) {
             if (!event.shiftKey) {
-                addRow({ text: '' })
+                addRow({ text: '', index: 0 })
                 event.preventDefault()
             } else {
                 contentRef.current.innerText = contentRef.current.innerText + "\n"

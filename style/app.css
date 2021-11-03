@@ -37,6 +37,10 @@
     background-color: #F1F1EF;
 }
 
+.bg-gray-1 {
+    background-color: #F1F1EF;
+}
+
 h1 {
     @apply font-bold text-gray-900 text-6xl
 }

@@ -21,18 +21,38 @@ const ListContentRow = ({ rows = [], addRow, removeRow }) => {
 }
 
 export default function Home() {
-    const [rows, appendRow] = useState([])
-
-    useEffect(() => {
-        if (rows.length == 0) {
-            addRow({ text: "👋 Welcome to Nocion!", id: nanoid() })
-        }
-    }, [rows])
+    const [rows, appendRow] = useState([
+        { text: "👋 Welcome to Nocion!", id: nanoid() }
+    ])
 
     const addRow = (value) => {
-        const cloneRows = [...rows]
-        cloneRows.push({ ...value, id: nanoid() })
-        appendRow(cloneRows)
+        if (value?.parentId) {
+            return appendRow(prevRows => {
+                const indexParentId = prevRows.findIndex(item => item.id === value.parentId)
+
+                return [
+                    ...prevRows.slice(0, indexParentId + 1),
+                    ...[{ text: value?.text, id: nanoid() }],
+                    ...prevRows.slice(indexParentId + 1, prevRows.length)
+                ]
+            })
+        }
+
+        if (value?.index === 0) {
+            return appendRow(prevRows => {
+                return [
+                    ...[{ text: value?.text, id: nanoid() }],
+                    ...prevRows
+                ]
+            })
+        }
+
+        return appendRow(prevRows => {
+            return [
+                ...prevRows,
+                ...[{ text: value?.text, id: nanoid() }]
+            ]
+        })
     }
 
     const removeRow = (value) => {
