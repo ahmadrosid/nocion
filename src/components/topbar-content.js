@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import useOnClickOutside from "../lib/hooks/useOnClickOutside";
 
-export default function TopbarContent({ title }) {
+export default function TopbarContent({ title, onUpdateTitle }) {
     const refTitleContainer = useRef()
     const refTitle = useRef()
     const [contentTitle, setContentTitle] = useState(title)
@@ -15,7 +15,9 @@ export default function TopbarContent({ title }) {
     }
 
     const handleSubmitUpdateTitle = (e) => {
-        setContentTitle(e.target.title.value)
+        const text = e.target.title.value
+        setContentTitle(text)
+        onUpdateTitle(text)
         setShowEditTitle(false)
         e.preventDefault();
     }

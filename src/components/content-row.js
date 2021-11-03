@@ -3,6 +3,7 @@ import { setCaretToEnd } from "../lib/utils"
 import PopupMenu from "./popup-menu"
 
 export default function ContentRow({ text, id, addRow, removeRow }) {
+    const [textValue, setTextValue] = useState(text)
     const contentRef = useRef()
     const [openPopup, setOpenPopup] = useState(false)
 
@@ -29,52 +30,62 @@ export default function ContentRow({ text, id, addRow, removeRow }) {
 
     const handleOnUp = (event) => {
         const { key } = event
-        if (!contentRef?.current?.innerText) {
+        const { textContent } = contentRef.current
+        if (document.activeElement !== contentRef.current) {
+            return
+        }
+       
+        if (key == 'Backspace' && textContent === '') {
+            if (contentRef.current.getAttribute('placeholder') === '') {
+                contentRef.current.setAttribute('placeholder', "Type '/' for commands")
+                setOpenPopup(() => {
+                    return false
+                })
+                return
+            }
+
+            removeRow({ text, id })
             return
         }
 
-        const { innerText } = contentRef.current
-        if (key === '/' && document.activeElement === contentRef.current) {
-            if (innerText === '/' || innerText.length == 1) {
-                setOpenPopup(true)
-                event.preventDefault();
-                return
-            }
-        }
-
-        if (key == 'Backspace' && document.activeElement === contentRef.current) {
-            if (innerText === '' || innerText.length == 0) {
-                contentRef.current.setAttribute('placeholder', "Type '/' for commands")
-                removeRow({ text, id })
-                return
-            }
-        } else {
-            if (key == 'Enter' && document.activeElement === contentRef.current) {
-                event.preventDefault()
-                addRow({ text: '', parentId: id })
-            }
+        if (key == 'Enter') {
+            addRow({ text: '', parentId: id })
             contentRef.current.setAttribute('placeholder', '')
+            event.preventDefault()
+        }
+        
+        if (key === '/' &&  textContent === '/' ) {
+            setOpenPopup(true)
+            event.preventDefault();
+            return
+        } 
+
+        if (key === ' ') {
+            if (textContent === '# ') {
+                console.log(event);
+            }
+            console.log(`'${textContent}'`);
+            return
         }
     }
 
     const handleOnDown = (event) => {
         const { key } = event
-        const { innerText } = contentRef.current
-        if (innerText == undefined) return
-
-        if (key == 'Backspace' && document.activeElement === contentRef.current && innerText === '' || innerText.length == 0) {
-            // if (document.activeElement !== contentRef.current) {
-            //     contentRef.current.setAttribute('placeholder', '')
-            //     return;
-            // }
-            contentRef.current.setAttribute('placeholder', "Type '/' for commands")
-        } else {
-            if (key == 'Enter' && document.activeElement === contentRef.current) {
-                event.preventDefault()
-                return
-            }
+        const { textContent } = contentRef.current
+        if (document.activeElement !== contentRef.current) {
+            return
+        }
+               
+        if (contentRef.current.getAttribute('placeholder') !== '' && textContent !== '') {
             contentRef.current.setAttribute('placeholder', '')
         }
+
+        if (key == 'Enter') {
+            contentRef.current.setAttribute('placeholder', '')
+            event.preventDefault()
+            return
+        }
+       
     }
 
     const onAddClick = () => {
@@ -122,7 +133,7 @@ export default function ContentRow({ text, id, addRow, removeRow }) {
                 suppressContentEditableWarning={true}
                 contentEditable={true}
                 spellCheck={true}>
-                {text}
+                {textValue}
             </div>
         </div>
     )

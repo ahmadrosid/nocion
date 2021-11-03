@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import { nanoid } from 'nanoid'
 import ContentRow from '../components/content-row'
 import SidebarContent from '../components/sidebar-content';
@@ -21,6 +21,7 @@ const ListContentRow = ({ rows = [], addRow, removeRow }) => {
 }
 
 export default function Home() {
+    const [title, setTitle] = useState("Getting Started")
     const [rows, appendRow] = useState([
         { text: "👋 Welcome to Nocion!", id: nanoid() }
     ])
@@ -56,14 +57,17 @@ export default function Home() {
     }
 
     const removeRow = (value) => {
-        const cloneRows = rows.filter(item => item.id !== value.id)
-        appendRow(cloneRows)
+        return appendRow(prevRows => {
+            return [
+                ...prevRows.filter(item => item.id !== value.id)
+            ]
+        })
     }
 
     return (
         <div className="flex w-full h-screen justify-between font-base">
             <Head>
-                <title>Getting Started</title>
+                <title>{title}</title>
                 <link rel="icon" href="/favicon.ico" />
                 <script defer data-domain="nocion.vercel.app" src="https://plausible.io/js/plausible.js"></script>
             </Head>
@@ -71,7 +75,7 @@ export default function Home() {
             <SidebarContent />
 
             <div className="w-full h-full">
-                <TopbarContent title="Getting Started" />
+                <TopbarContent title={title} onUpdateTitle={(text) => setTitle(text)} />
                 <div className="xl:w-[900px] md:w-[650px] px-16 mx-auto">
                     <ContentTitle addRow={addRow} text="Getting Started" />
                     <ListContentRow
