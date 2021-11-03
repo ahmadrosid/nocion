@@ -99,6 +99,8 @@ export default function ContentRow({ text, id, addRow, removeRow }) {
 
     const onSelectMenu = () => {
         setOpenPopup(false)
+        contentRef.current.textContent = ''
+        contentRef.current.focus()
     }
 
     useEffect(() => {

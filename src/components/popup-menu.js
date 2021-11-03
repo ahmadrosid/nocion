@@ -13,7 +13,7 @@ function MenuItem({ onSelectMenu }) {
 }
 
 export default function PopupMenu({ isOpen, onSelectMenu }) {
-    if (!isOpen) return (<></>)
+    if (!isOpen) return null
 
     return (
         <div className="absolute bottom-0">
