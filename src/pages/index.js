@@ -15,7 +15,7 @@ export default function Home() {
           <h1>A <span className="font-normal text-red-300">Notion</span> clone.</h1>
           <h1>Just for fun.</h1>
           <div className="py-4">
-            <p className="text-[#37352F] text-base">Powered by Next.js adn React.</p>
+            <p className="text-[#37352F] text-base">Powered by Next.js and React.</p>
           </div>
           <div>
             <a href="/onboarding">

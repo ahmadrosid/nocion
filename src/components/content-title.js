@@ -13,6 +13,7 @@ export default function ContentTitle({ text, addRow }){
         if (key == 'Enter' && document.activeElement === contentRef.current) {
             if (!event.shiftKey) {
                 addRow({ text: '' })
+                event.preventDefault()
             } else {
                 contentRef.current.innerText = contentRef.current.innerText + "\n"
                 selectLastNode(contentRef.current) 
