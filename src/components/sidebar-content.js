@@ -51,12 +51,12 @@ export default function SidebarContent() {
                     <li className="px-4 py-2 bg-[#E8E7E4]">
                         <div className="flex items-center gap-2">
                             <div className="text-[#A1A09C] hover:cursor-pointer">
-                                <svg viewBox="0 0 100 100" className="w-4 h-4 rotate-90" fill="currentColor" >
+                                <svg viewBox="0 0 100 100" className="w-[0.6875em] h-[0.6875em] rotate-90" fill="currentColor" >
                                     <polygon points="5.9,88.2 50,11.8 94.1,88.2 "></polygon>
                                 </svg>
                             </div>
                             <div>
-                                <svg viewBox="0 0 30 30" className="w-4 h-4 text-[#A1A09C]" fill="currentColor">
+                                <svg viewBox="0 0 30 30" className="w-[17.76px] h-[17.76px] text-[#A1A09C]" fill="currentColor">
                                     <g> <path d="M16,1H4v28h22V11L16,1z M16,3.828L23.172,11H16V3.828z M24,27H6V3h8v10h10V27z M8,17h14v-2H8V17z M8,21h14v-2H8V21z M8,25h14v-2H8V25z"></path> </g>
                                 </svg>
                             </div>
