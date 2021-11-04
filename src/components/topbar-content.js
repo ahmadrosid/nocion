@@ -27,7 +27,7 @@ export default function TopbarContent({ title, onUpdateTitle }) {
             <div className="relative" ref={refTitleContainer} >
                 <div onClick={handleUpdateTitle} ref={refTitle} className="hover:bg-hover px-2 py-1 rounded-md cursor-pointer">{contentTitle}</div>
                 {showEditTitle && (
-                    <div className="bg-white rounded shadow-lg py-1 px-2 border border-[#dadada] flex items-center gap-2 absolute -left-full w-[350px]">
+                    <div className="z-10 bg-white rounded shadow-lg py-1 px-2 border border-[#dadada] flex items-center gap-2 absolute -left-full w-[350px]">
                         <div className="border border-[#dadada] px-1.5 py-1 rounded">
                             <img src="/user.jpg" className="w-6 rounded" />
                         </div>
