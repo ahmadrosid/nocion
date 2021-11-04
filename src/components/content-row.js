@@ -113,7 +113,7 @@ export default function ContentRow({ text, id, addRow, removeRow }) {
     }, []);
 
     return (
-        <div className="flex items-center relative group">
+        <div className="flex items-center relative group active:cursor-grab" draggable={true} >
             <div className="-left-9 top-1 absolute flex gap-1 items-center">
                 <div onClick={onAddClick} className="hover:bg-gray-200 group-hover:block hidden transition-all rounded cursor-pointer">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-300" viewBox="0 0 20 20" fill="currentColor">

@@ -68,3 +68,9 @@ h2 {
     cursor: -moz-grabbing;
     cursor: -webkit-grabbing;
 }
+
+.active\:cursor-grab:active {
+    cursor: grabbing;
+    cursor: -moz-grabbing;
+    cursor: -webkit-grabbing;
+}

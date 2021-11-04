@@ -8,15 +8,17 @@ import ContentTitle from '../components/content-title';
 
 const ListContentRow = ({ rows = [], addRow, removeRow }) => {
     return (
-        rows.map(item => {
-            return <ContentRow
-                key={item.id}
-                id={item.id}
-                text={item.text}
-                addRow={addRow}
-                removeRow={removeRow}
-            />
-        })
+        <div className="content-rows">
+            {rows.map(item => {
+                return <ContentRow
+                    key={item.id}
+                    id={item.id}
+                    text={item.text}
+                    addRow={addRow}
+                    removeRow={removeRow}
+                />
+            })}
+        </div>
     )
 }
 

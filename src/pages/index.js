@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <div className="font-mono">
       <Head>
-        <title>Noiton - Open source alternative to notion.</title>
+        <title>Nocion - Open source alternative to notion.</title>
         <link rel="icon" href="/favicon.ico" />
         <script defer data-domain="nocion.vercel.app" src="https://plausible.io/js/plausible.js"></script>
       </Head>
