@@ -43,7 +43,7 @@ export default function ContentTitle({ text, addRow }){
             ref={contentRef}
             suppressContentEditableWarning={true}
             contentEditable={true}
-            className="text-[#37352F] font-bold text-[40px] p-2 focus:outline-none">
+            className="text-[#37352F] font-bold text-[48px] p-2 pt-1 focus:outline-none">
             {text}
         </div>
     )

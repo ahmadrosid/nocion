@@ -18,3 +18,4 @@ Just for fun!
 - [x] Remove line when Backspace is pressed and content is empty
 - [x] Make content container draggable
 - [ ] Update content position on drag end
+- [ ] Display button add icon above page title on hover page title

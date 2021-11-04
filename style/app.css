@@ -74,3 +74,7 @@ h2 {
     cursor: -moz-grabbing;
     cursor: -webkit-grabbing;
 }
+
+.input-file {
+    display: none;
+}
