@@ -3,12 +3,13 @@ Just for fun!
 
 ## Feature
 **Editor**
+- [x] Display button add icon and comment above page title on hover page title
 - [x] Edit page title
 - [x] Add new line when inside edit title when pressing shift+enter
-- [x] Add new content line with when press enter in page editor
-- [x] Add new content line on preees inside content text 
-- [x] New line with the correct position
-- [x] Display drag and plus button when on hover line
+- [x] Add new block editor when press enter in page title editor
+- [x] Add new block editor on prees `Enter` inside block editor 
+- [x] New block editor with the correct position
+- [x] Display drag and plus button when on hover line block editor
 - [x] Display popup option content type on press '/'
 - [x] Display placeholder command when press delete and the content is empty
 - [x] Add new line on click plus button when content is not empty
@@ -18,4 +19,3 @@ Just for fun!
 - [x] Remove line when Backspace is pressed and content is empty
 - [x] Make content container draggable
 - [ ] Update content position on drag end
-- [ ] Display button add icon above page title on hover page title
