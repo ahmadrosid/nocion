@@ -18,4 +18,5 @@ Just for fun!
 - [x] Remove '/' when content popup is clicked adn set line to focus
 - [x] Remove line when Backspace is pressed and content is empty
 - [x] Make content container draggable
+- [x] Add page icon with selected image
 - [ ] Update content position on drag end
