@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import useOnClickOutside from "../lib/hooks/useOnClickOutside";
+import useOnClickOutside from "../../lib/hooks/useOnClickOutside";
 
 export default function TopbarContent({ title, onUpdateTitle, isShowToggle, toggleSidebar }) {
     const refTitleContainer = useRef()

@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react"
-import { selectLastNode } from "../lib/utils"
+import { selectLastNode } from "@/lib/utils"
 
 export default function ContentTitle({ text, addRow }){
     const contentRef = useRef()

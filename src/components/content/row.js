@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react"
-import { setCaretToEnd } from "../lib/utils"
-import PopupMenu from "./popup-menu"
+import { setCaretToEnd } from "@/lib/utils"
+import PopupMenu from "@/components/block/popup"
 
 export default function ContentRow({ text, id, addRow, removeRow }) {
     const [textValue, setTextValue] = useState(text)
