@@ -19,7 +19,7 @@ export default function Home() {
             <p>Made with 💖 by <a  href="https://ahmadrosid.com" className="text-pink-500 font-semibold">Ahmad Rosid</a></p>
           </div>
           <div>
-            <a href="/onboarding">
+            <a href="/get-started">
               <button className="btn-primary">Get started</button>
             </a>
           </div>
