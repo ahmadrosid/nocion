@@ -1,4 +1,4 @@
-import ContentRow from "@/components/content/row"
+import ContentRow from "@/components/editor/row"
 
 export default function ListContentRow({ rows = [], addRow, removeRow }){
     return (

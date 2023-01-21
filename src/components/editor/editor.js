@@ -1,6 +1,6 @@
 import TopbarContent from "@/components/content/topbar";
 import ContentTitle from "@/components/content/title";
-import ListContentRow from "@/components/content/list";
+import ListContentRow from "@/components/editor/list";
 import clsx from "clsx";
 
 export default function Editor({
