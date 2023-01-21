@@ -1,4 +1,5 @@
 import useEditorStore from "@/lib/hooks/useEditorStore"
+import { isAlphaNumeric } from "@/lib/utils";
 import { nanoid } from "nanoid";
 
 function MenuItem({ item, onSelectMenu }) {
