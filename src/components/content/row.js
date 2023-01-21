@@ -1,8 +1,11 @@
 import { useEffect, useRef, useState } from "react"
 import { setCaretToEnd } from "@/lib/utils"
 import PopupMenu from "@/components/block/popup"
+import useEditorStore from "@/lib/hooks/useEditorStore"
 
 export default function ContentRow({ text, id, addRow, removeRow }) {
+    const { setKeys } = useEditorStore();
+
     const [textValue, setTextValue] = useState(text)
     const contentRef = useRef()
     const [openPopup, setOpenPopup] = useState(false)
@@ -71,6 +74,7 @@ export default function ContentRow({ text, id, addRow, removeRow }) {
 
     const handleOnDown = (event) => {
         const { key } = event
+        setKeys(key)
         const { textContent } = contentRef.current
         if (document.activeElement !== contentRef.current) {
             return

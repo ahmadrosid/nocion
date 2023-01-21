@@ -5,14 +5,18 @@ import { readImage } from '@/lib/browser-file';
 import { Transition } from '@headlessui/react';
 import Editor from '@/components/editor/editor';
 import SidebarContent from '@/components/content/sidebar';
+import { useAtom } from 'jotai';
+import { blockAtoms } from '@/lib/store';
 
 export default function Home() {
-    const [title, setTitle] = useState("Getting Started")
+    const [block, setBlockAtom] = useAtom(blockAtoms);
     const [pageIcon, updatePageIcon] = useState(null)
     const [rows, appendRow] = useState([
         { text: "👋 Welcome to Nocion!", id: nanoid() }
     ])
     const [isShowSidebar, setShowSidebar] = useState(true);
+
+    const setTitle = (value) => setBlockAtom({...block, title: value})
 
     const addRow = (value) => {
         if (value?.parentId) {
@@ -65,7 +69,7 @@ export default function Home() {
     return (
         <div>
             <Head>
-                <title>{title}</title>
+                <title>{block.title}</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <div className="flex w-full h-screen justify-between font-base overflow-y-hidden">
@@ -88,7 +92,7 @@ export default function Home() {
                     onSelectIcon={onSelectIcon}
                     rows={rows}
                     pageIcon={pageIcon}
-                    title={title}
+                    title={block.title}
                     setShowSidebar={setShowSidebar}
                  />
             </div>

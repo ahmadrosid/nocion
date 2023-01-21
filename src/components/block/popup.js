@@ -1,4 +1,5 @@
-import { nanoid } from "nanoid"
+import useEditorStore from "@/lib/hooks/useEditorStore"
+import { nanoid } from "nanoid";
 
 function MenuItem({ item, onSelectMenu }) {
     return (
@@ -13,6 +14,8 @@ function MenuItem({ item, onSelectMenu }) {
 }
 
 export default function PopupMenu({ isOpen, onSelectMenu }) {
+    const { lastKey } = useEditorStore();
+
     if (!isOpen) return null
 
     const items = [
@@ -42,13 +45,17 @@ export default function PopupMenu({ isOpen, onSelectMenu }) {
         },
     ].map(item => ({...item, id: nanoid()}))
 
+    let filteredItems = items.filter(
+        item => isAlphaNumeric(lastKey) ? item.name.includes(lastKey) : true
+    )
+
     return (
         <div className="absolute bottom-0">
             <div className="relative z-10">
                 <div className="w-[350px] max-h-[350px] absolute top-0 rounded p-2 pb-1 px-0 bg-white shadow-lg border border-gray-200 overflow-y-auto">
                     <div className="uppercase px-2 text-[11px] text-gray-600">basic blocks</div>
                     <div className="py-2">
-                        {items.map(item => <MenuItem key={item.id} item={item} onSelectMenu={onSelectMenu} />)}
+                        {filteredItems.map(item => <MenuItem key={item.id} item={item} onSelectMenu={onSelectMenu} />)}
                     </div>
                 </div>
             </div>
