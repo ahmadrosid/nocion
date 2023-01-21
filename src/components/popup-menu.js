@@ -24,7 +24,6 @@ export default function PopupMenu({ isOpen, onSelectMenu }) {
                         {Array(8).fill().map(() => <MenuItem key={nanoid()} onSelectMenu={onSelectMenu} />)}
                     </div>
                 </div>
-
             </div>
         </div>
     )
