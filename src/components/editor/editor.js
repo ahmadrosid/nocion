@@ -12,7 +12,7 @@ export default function Editor({
   removeRow,
   rows,
   pageIcon,
-  title
+  title,
 }) {
   return (
     <div className="w-full h-full overflow-y-scroll">

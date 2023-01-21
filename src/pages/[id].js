@@ -90,6 +90,7 @@ export default function Home() {
                     rows={rows}
                     pageIcon={pageIcon}
                     title={title}
+                    setShowSidebar={setShowSidebar}
                  />
             </div>
         </div>
