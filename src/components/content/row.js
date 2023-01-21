@@ -110,7 +110,7 @@ export default function ContentRow({ text, id, addRow, removeRow }) {
             window.removeEventListener("keyup", handleOnUp);
             window.removeEventListener("keydown", handleOnDown);
         };
-    }, []);
+    }, [contentRef]);
 
     return (
         <div className="flex items-center relative group active:cursor-grab" draggable={true} >

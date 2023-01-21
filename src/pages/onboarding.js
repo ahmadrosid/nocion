@@ -1,3 +1,4 @@
+import React from 'react'
 import Head from 'next/head'
 import clsx from 'clsx'
 
@@ -9,7 +10,6 @@ export default function Onboarding() {
             <Head>
                 <title>Onboarding - Noicon</title>
                 <link rel="icon" href="/favicon.ico" />
-                <script defer data-domain="nocion.vercel.app" src="https://plausible.io/js/plausible.js"></script>
             </Head>
 
             <div className="space-y-8">

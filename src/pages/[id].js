@@ -67,7 +67,6 @@ export default function Home() {
             <Head>
                 <title>{title}</title>
                 <link rel="icon" href="/favicon.ico" />
-                <script defer data-domain="nocion.vercel.app" src="https://plausible.io/js/plausible.js"></script>
             </Head>
             <div className="flex w-full h-screen justify-between font-base overflow-y-hidden">
                 <Transition
