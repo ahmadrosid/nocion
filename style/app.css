@@ -1,80 +1,82 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap");
 
 .font-mono {
-    font-family: inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
-    font-size: 17px;
+  font-family: inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica,
+    "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 17px;
 }
 
 .font-base {
-    font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji",
+    "Segoe UI Symbol";
 }
 
 .btn-primary {
-    @apply px-6 py-2 rounded text-white bg-[#1D89C7] border border-[#308bbf]
+  @apply px-6 py-2 rounded text-white bg-[#1D89C7] border border-[#308bbf];
 }
 
 .text-gray-900 {
-    @apply text-[#111111]
+  @apply text-[#111111];
 }
 
 .text-gray-800 {
-    @apply text-[#3b3b3b]
+  @apply text-[#3b3b3b];
 }
 
 .text-gray-700 {
-    @apply text-[#575757]
+  @apply text-[#575757];
 }
 
 .text-gray-600 {
-    color: rgba(55, 53, 47, 0.8)
+  color: rgba(55, 53, 47, 0.8);
 }
 
 .text-yello-600 {
-    color: rgb(246, 192, 80);
+  color: rgb(246, 192, 80);
 }
 
 .hover\:bg-hover:hover {
-    background-color: #F1F1EF;
+  background-color: #f1f1ef;
 }
 
 .bg-gray-1 {
-    background-color: #F1F1EF;
+  background-color: #f1f1ef;
 }
 
 h1 {
-    @apply font-bold text-gray-900 text-6xl
+  @apply font-bold text-gray-900 text-6xl;
 }
 
 h2 {
-    @apply font-semibold text-gray-900 text-3xl
+  @apply font-semibold text-gray-900 text-3xl;
 }
 
-.block-editor::after
-{
-    content: attr(placeholder);
-    color: rgb(182, 182, 182);
-    @apply text-sm
+.block-editor::after {
+  content: attr(placeholder);
+  color: rgb(182, 182, 182);
+  @apply text-sm;
 }
 
 .grabbable {
-    cursor: move;
-    cursor: grab;
-    cursor: -moz-grab;
-    cursor: -webkit-grab;
+  cursor: move;
+  cursor: grab;
+  cursor: -moz-grab;
+  cursor: -webkit-grab;
 }
 
 .grabbable:active {
-    cursor: grabbing;
-    cursor: -moz-grabbing;
-    cursor: -webkit-grabbing;
+  cursor: grabbing;
+  cursor: -moz-grabbing;
+  cursor: -webkit-grabbing;
 }
 
 .active\:cursor-grab:active {
-    cursor: grabbing;
-    cursor: -moz-grabbing;
-    cursor: -webkit-grabbing;
+  cursor: grabbing;
+  cursor: -moz-grabbing;
+  cursor: -webkit-grabbing;
 }
 
 .input-file {
-    display: none;
+  display: none;
 }

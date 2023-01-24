@@ -1,12 +1,17 @@
-import { FormEvent, useRef, useState } from "react";
+import React, { FormEvent, useRef, useState } from "react";
 import useOnClickOutside from "@/lib/hooks/useOnClickOutside";
 import clsx from "clsx";
 
 export default function TopbarContent({
   title,
-  onUpdateTitle,
   isShowToggle,
+  onUpdateTitle,
   toggleSidebar,
+}: {
+  title: string;
+  isShowToggle: boolean;
+  onUpdateTitle: (val: string) => void;
+  toggleSidebar: (event: React.MouseEvent) => void;
 }) {
   const refTitleContainer = useRef();
   const refTitle = useRef();
@@ -21,10 +26,11 @@ export default function TopbarContent({
   };
 
   const handleSubmitUpdateTitle = (e: FormEvent<HTMLFormElement>) => {
-    const formTitle = e.currentTarget.elements as typeof e.currentTarget.elements & {
-      title: HTMLInputElement
+    const formTitle = e.currentTarget
+      .elements as typeof e.currentTarget.elements & {
+      title: HTMLInputElement;
     };
-    let text = formTitle.title.value
+    let text = formTitle.title.value;
     setContentTitle(text);
     onUpdateTitle(text);
     setShowEditTitle(false);

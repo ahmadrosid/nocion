@@ -1,7 +1,7 @@
-import 'tailwindcss/tailwind.css'
-import '../../style/app.css'
+import "tailwindcss/tailwind.css";
+import "../../style/app.css";
 import { Provider } from "jotai";
-import type { AppProps } from 'next/app'
+import type { AppProps } from "next/app";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (

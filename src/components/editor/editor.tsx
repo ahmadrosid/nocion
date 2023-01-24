@@ -28,7 +28,11 @@ export default function Editor({
             <div className="p-2 hover:bg-hover max-w-[140px] rounded cursor-pointer">
               <img
                 src={pageIcon}
-                className={clsx("max-w-[125px]", pageIcon ? "h-[125px]" : "h-[78px]", "object-cover")}
+                className={clsx(
+                  "max-w-[125px]",
+                  pageIcon ? "h-[125px]" : "h-[78px]",
+                  "object-cover"
+                )}
               />
             </div>
             <div className="pt-2 flex gap-2 invisible group-hover:visible">
