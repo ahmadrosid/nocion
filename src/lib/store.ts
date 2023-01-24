@@ -13,7 +13,7 @@ type BlockItem = {
     parent?: string
 }
 
-type Block = {
+export type Block = {
     title: string,
     keys: string[],
     currentKey: string[],
@@ -27,4 +27,4 @@ export const defaultBlocks: Block = {
     blocks: []
 };
 
-export const blockAtoms = atom(defaultBlocks);
+export const blockAtoms = atom<Block>(defaultBlocks);
