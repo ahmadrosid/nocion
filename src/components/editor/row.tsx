@@ -6,17 +6,8 @@ import useEditorStore from "@/lib/hooks/useEditorStore"
 export default function ContentRow({ text, id, addRow, removeRow }) {
     const { setKeys } = useEditorStore();
 
-    const [textValue, setTextValue] = useState(text)
-    const contentRef = useRef()
+    const contentRef = useRef<HTMLDivElement>()
     const [openPopup, setOpenPopup] = useState(false)
-
-    useEffect(() => {
-        if (text == '') {
-            contentRef.current.focus()
-        } else {
-            setCaretToEnd(contentRef.current)
-        }
-    }, [])
 
     const handleOnFocus = () => {
         if (contentRef.current?.innerText?.length == 0) {
@@ -31,7 +22,7 @@ export default function ContentRow({ text, id, addRow, removeRow }) {
         }
     }
 
-    const handleOnUp = (event) => {
+    const handleOnUp = (event: KeyboardEvent) => {
         const { key } = event
         const { textContent } = contentRef.current
         if (document.activeElement !== contentRef.current) {
@@ -72,7 +63,7 @@ export default function ContentRow({ text, id, addRow, removeRow }) {
         }
     }
 
-    const handleOnDown = (event) => {
+    const handleOnDown = (event: KeyboardEvent) => {
         const { key } = event
         setKeys(key)
         const { textContent } = contentRef.current
@@ -108,6 +99,12 @@ export default function ContentRow({ text, id, addRow, removeRow }) {
     }
 
     useEffect(() => {
+        if (text == '') {
+            contentRef.current.focus()
+        } else {
+            setCaretToEnd(contentRef.current)
+        }
+
         window.addEventListener("keyup", handleOnUp);
         window.addEventListener("keydown", handleOnDown);
         return () => {
@@ -139,7 +136,7 @@ export default function ContentRow({ text, id, addRow, removeRow }) {
                 suppressContentEditableWarning={true}
                 contentEditable={true}
                 spellCheck={true}>
-                {textValue}
+                {text}
             </div>
         </div>
     )

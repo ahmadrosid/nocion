@@ -2,13 +2,13 @@ import Head from 'next/head'
 
 export default function Index() {
   return (
-    <div className="font-mono">
+    <div>
       <Head>
         <title>Nocion - Open source alternative to notion.</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
+      <main className="font-mono">
         <div className="w-full max-w-5xl mx-auto space-y-2 mt-24 px-8">
           <h1 className="font-light">Nocion</h1>
           <h1>A <span className="font-normal text-red-300">Notion</span> clone.</h1>

@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { FormEvent, useRef, useState } from "react";
 import useOnClickOutside from "@/lib/hooks/useOnClickOutside";
 import clsx from "clsx";
 
@@ -15,13 +15,16 @@ export default function TopbarContent({
 
   useOnClickOutside(refTitleContainer, () => setShowEditTitle(false));
 
-  const handleUpdateTitle = (e) => {
+  const handleUpdateTitle = (e: React.MouseEvent<HTMLDivElement>) => {
     setShowEditTitle(!showEditTitle);
     e.preventDefault();
   };
 
-  const handleSubmitUpdateTitle = (e) => {
-    const text = e.target.title.value;
+  const handleSubmitUpdateTitle = (e: FormEvent<HTMLFormElement>) => {
+    const formTitle = e.currentTarget.elements as typeof e.currentTarget.elements & {
+      title: HTMLInputElement
+    };
+    let text = formTitle.title.value
     setContentTitle(text);
     onUpdateTitle(text);
     setShowEditTitle(false);

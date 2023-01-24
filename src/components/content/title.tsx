@@ -1,10 +1,12 @@
-import { useEffect, useRef } from "react"
+import React, { useEffect, useRef } from "react"
 import { selectLastNode } from "@/lib/utils"
 
-export default function ContentTitle({ text, addRow }){
-    const contentRef = useRef()
+type RowItem = { text: string, index: number };
 
-    const handleOnUp = (event) => {
+export default function ContentTitle({ text, addRow }: {text: string, addRow: (param: RowItem) => void}){
+    const contentRef = useRef<HTMLDivElement>()
+
+    const handleOnUp = (event: KeyboardEvent) => {
         const { key } = event
         if (!contentRef?.current?.innerText) {
             return
@@ -21,7 +23,7 @@ export default function ContentTitle({ text, addRow }){
         }
     }
 
-    const handleOnDown = (event) => {
+    const handleOnDown = (event: KeyboardEvent) => {
         // TODO: handle something
         const { key } = event
         if (key == 'Enter' && document.activeElement === contentRef.current) {
