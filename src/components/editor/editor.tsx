@@ -1,18 +1,10 @@
 import TopbarContent from "@/components/content/topbar";
-import ContentTitle from "@/components/content/title";
-import ListContentRow from "@/components/editor/list";
 import clsx from "clsx";
 import { ReactEditor, Editable, withReact, Slate } from "slate-react";
-import {
-  BaseEditor,
-  Descendant,
-  Editor as SlateEditor,
-  createEditor,
-  Transforms,
-} from "slate";
+import { BaseEditor, createEditor, Transforms } from "slate";
 import { useCallback, useState } from "react";
 
-type CustomElement = { type: "paragraph"; children: CustomText[] };
+type CustomElement = { type: string; children: CustomText[] };
 type CustomText = { text: string };
 
 declare module "slate" {
@@ -23,11 +15,9 @@ declare module "slate" {
   }
 }
 
-type ElementType = "paragraph" | "code";
-
 const initialValue = [
   {
-    type: "paragraph" as ElementType,
+    type: "paragraph",
     children: [{ text: "A line of text paragraph." }],
   },
   {
@@ -139,8 +129,8 @@ export default function Editor({
                   event.preventDefault();
                   Transforms.setNodes(
                     editor,
-                    { type: "code" },
-                    { match: (n) => SlateEditor.isBlock(editor, n) }
+                    { type: "code" }
+                    // { match: (n) => SlateEditor.isBlock(editor, n) }
                   );
                 }
               }}
