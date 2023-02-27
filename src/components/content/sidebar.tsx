@@ -1,18 +1,18 @@
 export default function SidebarContent({ toggleSidebar }) {
   return (
     <div className="min-h-screen h-full w-[250px]">
-      <div className="relative z-0 w-full h-full bg-[#F7F6F3]">
-        <div className="px-4 py-2 hover:bg-[#E8E7E4] hover:cursor-pointer">
+      <div className="relative z-0 w-full h-full bg-gray-200">
+        <div className="px-4 py-2 hover:cursor-pointer">
           <div className="flex justify-between items-center gap-2 group relative">
             <div className="flex gap-2 items-center">
               <img src="/user.jpg" className="w-6 rounded" />
-              <p className="text-sm text-[#37352F] group-hover:ml-0 group-hover:relative truncate">
+              <p className="text-sm text-gray-900 group-hover:ml-0 group-hover:relative truncate">
                 Ahmad Rosid's Nocion
               </p>
             </div>
             <div
               onClick={toggleSidebar}
-              className="transition-opacity duration-500 static right-0 group-hover:static ease-in-out text-[#3d3d3d] opacity-0 transform group-hover:block group-hover:opacity-100"
+              className="transition-opacity duration-500 static right-0 group-hover:static ease-in-out text-gray-800 opacity-0 transform group-hover:block group-hover:opacity-100"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -29,8 +29,8 @@ export default function SidebarContent({ toggleSidebar }) {
             </div>
           </div>
         </div>
-        <div className="px-4 py-2 hover:bg-[#E8E7E4] hover:cursor-pointer">
-          <div className="flex items-center gap-2 text-[#747474]">
+        <div className="px-4 py-2 hover:bg-gray-300 hover:cursor-pointer">
+          <div className="flex items-center gap-2 text-gray-700">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-4 w-4"
@@ -46,8 +46,8 @@ export default function SidebarContent({ toggleSidebar }) {
             <span className="text-[14px] font-light">Quick find</span>
           </div>
         </div>
-        <div className="px-4 py-2 hover:bg-[#E8E7E4] hover:cursor-pointer">
-          <div className="flex items-center gap-2 text-[#747474]">
+        <div className="px-4 py-2 hover:bg-gray-300 hover:cursor-pointer">
+          <div className="flex items-center gap-2 text-gray-700">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-4 w-4"
@@ -65,8 +65,8 @@ export default function SidebarContent({ toggleSidebar }) {
             <span className="text-[14px] font-light">All Updates</span>
           </div>
         </div>
-        <div className="px-4 py-2 hover:bg-[#E8E7E4] hover:cursor-pointer mb-8">
-          <div className="flex items-center gap-2 text-[#747474]">
+        <div className="px-4 py-2 hover:bg-gray-300 hover:cursor-pointer mb-8">
+          <div className="flex items-center gap-2 text-gray-700">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-4 w-4"
@@ -91,9 +91,9 @@ export default function SidebarContent({ toggleSidebar }) {
           </div>
         </div>
         <ul className="py-2">
-          <li className="px-4 py-2 bg-[#E8E7E4]">
+          <li className="px-4 py-2 bg-gray-300">
             <div className="flex items-center gap-2">
-              <div className="text-[#A1A09C] hover:cursor-pointer">
+              <div className="text-gray-600 hover:cursor-pointer">
                 <svg
                   viewBox="0 0 100 100"
                   className="w-[0.6875em] h-[0.6875em] rotate-90"
@@ -105,7 +105,7 @@ export default function SidebarContent({ toggleSidebar }) {
               <div>
                 <svg
                   viewBox="0 0 30 30"
-                  className="w-[17.76px] h-[17.76px] text-[#A1A09C]"
+                  className="w-[17.76px] h-[17.76px] text-gray-600"
                   fill="currentColor"
                 >
                   <g>
@@ -114,7 +114,7 @@ export default function SidebarContent({ toggleSidebar }) {
                   </g>
                 </svg>
               </div>
-              <div className="text-[#37352F] text-base">Getting started</div>
+              <div className="text-gray-900 text-base">Getting started</div>
             </div>
           </li>
         </ul>

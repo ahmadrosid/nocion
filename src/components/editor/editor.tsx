@@ -154,7 +154,7 @@ export default function Editor({
 
 const CodeElement = (props) => {
   return (
-    <pre className="bg-gray-100 p-4" {...props.attributes}>
+    <pre className="bg-gray-200 rounded my-4 p-4" {...props.attributes}>
       <code>{props.children}</code>
     </pre>
   );
