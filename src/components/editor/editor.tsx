@@ -2,18 +2,57 @@ import TopbarContent from "@/components/content/topbar";
 import ContentTitle from "@/components/content/title";
 import ListContentRow from "@/components/editor/list";
 import clsx from "clsx";
+import { ReactEditor, Editable, withReact, Slate } from "slate-react";
+import {
+  BaseEditor,
+  Descendant,
+  Editor as SlateEditor,
+  createEditor,
+  Transforms,
+} from "slate";
+import { useCallback, useState } from "react";
+
+type CustomElement = { type: "paragraph"; children: CustomText[] };
+type CustomText = { text: string };
+
+declare module "slate" {
+  interface CustomTypes {
+    Editor: BaseEditor & ReactEditor;
+    Element: CustomElement;
+    Text: CustomText;
+  }
+}
+
+type ElementType = "paragraph" | "code";
+
+const initialValue = [
+  {
+    type: "paragraph" as ElementType,
+    children: [{ text: "A line of text paragraph." }],
+  },
+  {
+    type: "code",
+    children: [{ text: "const name = 'ahmad';" }],
+  },
+];
 
 export default function Editor({
   isShowSidebar,
   setShowSidebar,
   setTitle,
   onSelectIcon,
-  addRow,
-  removeRow,
-  rows,
   pageIcon,
   title,
 }) {
+  const [editor] = useState(() => withReact(createEditor()));
+  const renderElement = useCallback((props) => {
+    switch (props.element.type) {
+      case "code":
+        return <CodeElement {...props} />;
+      default:
+        return <DefaultElement {...props} />;
+    }
+  }, []);
   return (
     <div className="w-full h-full overflow-y-scroll">
       <TopbarContent
@@ -91,10 +130,40 @@ export default function Editor({
               </div>
             </div>
           </div>
-          <ContentTitle addRow={addRow} text="Getting Started" />
+
+          <Slate editor={editor} value={initialValue}>
+            <Editable
+              renderElement={renderElement}
+              onKeyDown={(event) => {
+                if (event.key === "`") {
+                  event.preventDefault();
+                  Transforms.setNodes(
+                    editor,
+                    { type: "code" },
+                    { match: (n) => SlateEditor.isBlock(editor, n) }
+                  );
+                }
+              }}
+            />
+          </Slate>
         </div>
-        <ListContentRow rows={rows} addRow={addRow} removeRow={removeRow} />
       </div>
     </div>
   );
 }
+
+const CodeElement = (props) => {
+  return (
+    <pre className="bg-gray-100 p-4" {...props.attributes}>
+      <code>{props.children}</code>
+    </pre>
+  );
+};
+
+const DefaultElement = (props) => {
+  return (
+    <p className="py-1" {...props.attributes}>
+      {props.children}
+    </p>
+  );
+};
