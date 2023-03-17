@@ -7,7 +7,7 @@ import {
   RenderLeafProps,
 } from "slate-react";
 import { createEditor, Descendant } from "slate";
-import { useCallback, useState } from "react";
+import { useCallback, useMemo } from "react";
 import Element from "./element";
 import { useElementTransformer } from "@/lib/hooks/useElementTransformer";
 import EditorHeader from "./header";
@@ -28,7 +28,7 @@ export default function Editor({
   pageIcon,
   title,
 }) {
-  const [editor] = useState(() => withReact(createEditor()));
+  const editor = useMemo(() => withReact(createEditor()), []);
   const renderElement = useCallback(
     (props: RenderElementProps) => <Element {...props} />,
     []
@@ -55,6 +55,7 @@ export default function Editor({
               renderElement={renderElement}
               renderLeaf={renderLeaf}
               onKeyDown={handleKeyDown}
+              autoFocus
             />
           </Slate>
         </div>
