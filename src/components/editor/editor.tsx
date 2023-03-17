@@ -1,16 +1,22 @@
 import TopbarContent from "@/components/content/topbar";
-import { Editable, withReact, Slate } from "slate-react";
+import {
+  Editable,
+  withReact,
+  Slate,
+  RenderElementProps,
+  RenderLeafProps,
+} from "slate-react";
 import { createEditor, Descendant } from "slate";
 import { useCallback, useState } from "react";
 import Element from "./element";
 import { useElementTransformer } from "@/lib/hooks/useElementTransformer";
 import EditorHeader from "./header";
+import Leaf from "./leaf";
 
 const initialValue: Descendant[] = [
   {
-    type: "heading",
-    level: 1,
-    children: [{ text: "Getting started" }],
+    type: "paragraph",
+    children: [{ text: "" }],
   },
 ];
 
@@ -23,7 +29,14 @@ export default function Editor({
   title,
 }) {
   const [editor] = useState(() => withReact(createEditor()));
-  const renderElement = useCallback((props) => <Element {...props} />, []);
+  const renderElement = useCallback(
+    (props: RenderElementProps) => <Element {...props} />,
+    []
+  );
+  const renderLeaf = useCallback(
+    (props: RenderLeafProps) => <Leaf {...props} />,
+    []
+  );
   const { handleKeyDown } = useElementTransformer(editor);
   return (
     <div className="w-full h-full overflow-y-scroll">
@@ -38,7 +51,11 @@ export default function Editor({
           <EditorHeader pageIcon={pageIcon} onSelectIcon={onSelectIcon} />
 
           <Slate editor={editor} value={initialValue}>
-            <Editable renderElement={renderElement} onKeyDown={handleKeyDown} />
+            <Editable
+              renderElement={renderElement}
+              renderLeaf={renderLeaf}
+              onKeyDown={handleKeyDown}
+            />
           </Slate>
         </div>
       </div>

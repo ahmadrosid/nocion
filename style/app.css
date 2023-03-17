@@ -52,6 +52,10 @@ h2 {
   @apply font-semibold text-gray-900 text-3xl;
 }
 
+h3 {
+  @apply font-semibold text-gray-900 text-2xl;
+}
+
 .block-editor::after {
   content: attr(placeholder);
   color: rgb(182, 182, 182);
