@@ -1,4 +1,4 @@
-import { RenderElementProps } from "slate-react";
+import { RenderElementProps, useFocused, useSelected } from "slate-react";
 import { Node } from "slate";
 import clsx from "clsx";
 
@@ -17,7 +17,11 @@ function CodeElement(props: RenderElementProps) {
 }
 
 function DefaultElement({ element, attributes, children }: RenderElementProps) {
-  const elementIsEmpty = Node.string(element).length === 0;
+  const selected = useSelected();
+  const focused = useFocused();
+
+  const elementIsEmpty =
+    selected && focused && Node.string(element).length === 0;
   return (
     <p
       className={clsx(
