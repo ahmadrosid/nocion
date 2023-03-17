@@ -80,11 +80,8 @@ export default function Home() {
         </Transition>
         <Editor
           isShowSidebar={isShowSidebar}
-          addRow={addRow}
-          removeRow={removeRow}
           setTitle={setTitle}
           onSelectIcon={onSelectIcon}
-          rows={rows}
           pageIcon={pageIcon}
           title={block.title}
           setShowSidebar={setShowSidebar}
