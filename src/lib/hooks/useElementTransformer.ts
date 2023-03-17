@@ -1,13 +1,6 @@
 import { KeyboardEvent, useCallback } from "react";
-import { Transforms, Editor, Node, Element } from "slate";
-
-function getActiveNode(editor: Editor): Element | undefined {
-  const { selection } = editor;
-  if (!selection) return undefined;
-  const element = Node.parent(editor, Editor.node(editor, selection.anchor)[1]);
-  if (!Element.isElement(element)) return undefined;
-  return element;
-}
+import { Transforms, Editor, Node } from "slate";
+import { getActiveNode } from "@/lib/node";
 
 export function useElementTransformer(editor: Editor) {
   const handleKeyDown = useCallback(
@@ -31,6 +24,11 @@ export function useElementTransformer(editor: Editor) {
             event.preventDefault();
             const underline = Editor.marks(editor)["underline"];
             editor.addMark("underline", !underline);
+            return;
+          case "-":
+            event.preventDefault();
+            const strikethrough = Editor.marks(editor)["strikethrough"];
+            editor.addMark("strikethrough", !strikethrough);
             return;
         }
       }

@@ -8,7 +8,8 @@ export default function Leaf({ children, leaf, attributes }: RenderLeafProps) {
       className={clsx(
         leaf.bold ? "font-bold" : "",
         leaf.italic ? "italic" : "",
-        leaf.underline ? "underline" : ""
+        leaf.underline ? "underline" : "",
+        leaf.strikethrough ? "line-through" : ""
       )}
     >
       {children}
