@@ -18,8 +18,8 @@ export function useElementTransformer(editor: Editor) {
         case "`":
           if (node?.type === "code") return;
 
-          const [leaf] = Editor.leaf(editor, editor.selection);
-          if (leaf.text !== "``") return;
+          const text = Node.string(node);
+          if (text !== "``") return;
 
           event.preventDefault();
           Transforms.setNodes(editor, { type: "code" });
@@ -27,7 +27,7 @@ export function useElementTransformer(editor: Editor) {
           return;
         case "Enter":
           event.preventDefault();
-          if (!event.shiftKey && node.type !== "paragraph") {
+          if (!event.shiftKey && node.type === "code") {
             Transforms.insertText(editor, "\n");
           } else {
             Transforms.insertNodes(editor, {

@@ -2,6 +2,12 @@ import { RenderElementProps } from "slate-react";
 import { Node } from "slate";
 import clsx from "clsx";
 
+function HeadingElement({ element, attributes, children }: RenderElementProps) {
+  if (element.type !== "heading") return null;
+  const HeadingTag = `h${element.level}`;
+  return <HeadingTag {...attributes}>{children}</HeadingTag>;
+}
+
 function CodeElement(props: RenderElementProps) {
   return (
     <pre className="bg-gray-200 rounded my-4 p-4" {...props.attributes}>
@@ -28,6 +34,8 @@ function DefaultElement({ element, attributes, children }: RenderElementProps) {
 
 export default function Element(props: RenderElementProps) {
   switch (props.element.type) {
+    case "heading":
+      return <HeadingElement {...props} />;
     case "code":
       return <CodeElement {...props} />;
     default:

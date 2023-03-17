@@ -8,8 +8,9 @@ import EditorHeader from "./header";
 
 const initialValue: Descendant[] = [
   {
-    type: "paragraph",
-    children: [{ text: "" }],
+    type: "heading",
+    level: 1,
+    children: [{ text: "Getting started" }],
   },
 ];
 
