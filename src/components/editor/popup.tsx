@@ -1,3 +1,4 @@
+import { usePopupContext } from "@/lib/context/popup-context";
 import useEditorStore from "@/lib/hooks/useEditorStore";
 import { isAlphaNumeric } from "@/lib/utils";
 import { nanoid } from "nanoid";
@@ -5,7 +6,7 @@ import { nanoid } from "nanoid";
 function MenuItem({ item, onSelectMenu }) {
   return (
     <div
-      onClick={() => onSelectMenu()}
+      onClick={() => onSelectMenu(item)}
       className="hover:bg-hover p-2 cursor-pointer flex items-center gap-2"
     >
       <img
@@ -20,10 +21,11 @@ function MenuItem({ item, onSelectMenu }) {
   );
 }
 
-export default function PopupMenu({ isOpen, onSelectMenu }) {
+export default function PopupMenu() {
   const { lastKey } = useEditorStore();
+  const { state, dispatch } = usePopupContext();
 
-  if (!isOpen) return null;
+  if (!state.open) return null;
 
   const items = [
     {
@@ -57,7 +59,10 @@ export default function PopupMenu({ isOpen, onSelectMenu }) {
   );
 
   return (
-    <div className="absolute bottom-0">
+    <div
+      className="fixed bottom-0"
+      style={{ top: state.position.top, left: state.position.left }}
+    >
       <div className="relative z-10">
         <div className="w-[350px] max-h-[350px] absolute top-0 rounded p-2 pb-1 px-0 bg-white shadow-lg border border-gray-200 overflow-y-auto">
           <div className="uppercase px-2 text-[11px] text-gray-600">
@@ -65,7 +70,13 @@ export default function PopupMenu({ isOpen, onSelectMenu }) {
           </div>
           <div className="py-2">
             {filteredItems.map((item) => (
-              <MenuItem key={item.id} item={item} onSelectMenu={onSelectMenu} />
+              <MenuItem
+                key={item.id}
+                item={item}
+                onSelectMenu={() => {
+                  dispatch({ type: "TOGGLE_POPUP" });
+                }}
+              />
             ))}
           </div>
         </div>

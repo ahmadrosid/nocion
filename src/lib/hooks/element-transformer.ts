@@ -1,8 +1,11 @@
-import { KeyboardEvent, useCallback } from "react";
+import { KeyboardEvent, useCallback, useContext } from "react";
 import { Transforms, Editor, Node } from "slate";
 import { getActiveNode } from "@/lib/node";
 
-export default function useElementTransformer(editor: Editor) {
+export default function useElementTransformer(
+  editor: Editor,
+  dispatch: (action: any) => void
+) {
   const handleKeyDown = useCallback(
     (event: KeyboardEvent) => {
       const node = getActiveNode(editor);
@@ -34,6 +37,9 @@ export default function useElementTransformer(editor: Editor) {
       }
 
       switch (event.key) {
+        case "/":
+          dispatch({ type: "TOGGLE_POPUP" });
+          return;
         case "`":
           if (node?.type === "code" || text !== "``") return;
           event.preventDefault();
@@ -59,6 +65,9 @@ export default function useElementTransformer(editor: Editor) {
               children: [{ text: "" }],
             });
           }
+          return;
+        case "Backspace":
+          dispatch({ type: "TOGGLE_POPUP" });
           return;
       }
     },
