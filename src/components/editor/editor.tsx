@@ -9,7 +9,7 @@ import {
 import { createEditor, Descendant } from "slate";
 import { useCallback, useMemo } from "react";
 import Element from "./element";
-import { useElementTransformer } from "@/lib/hooks/useElementTransformer";
+import useElementTransformer from "@/lib/hooks/element-transformer";
 import EditorHeader from "./header";
 import Leaf from "./leaf";
 

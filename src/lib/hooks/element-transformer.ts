@@ -2,7 +2,7 @@ import { KeyboardEvent, useCallback } from "react";
 import { Transforms, Editor, Node } from "slate";
 import { getActiveNode } from "@/lib/node";
 
-export function useElementTransformer(editor: Editor) {
+export default function useElementTransformer(editor: Editor) {
   const handleKeyDown = useCallback(
     (event: KeyboardEvent) => {
       const node = getActiveNode(editor);
